@@ -1,10 +1,15 @@
 # GFSSM AI Coach · 学生版
 
-面向 GFSSM 学生的自主学习教练（纯本地网页，无需联网、无需安装）。
+面向 GFSSM 学生的自主学习教练（纯前端网页，无需联网、无需安装）。
+
+**在线使用：https://gfssm-ai.itccc.app**
 
 ## 使用方式
 
-双击打开 `index.html`（建议 Chrome / Edge 浏览器）。整个工具就是这一个文件夹，拷贝给任何学生都能直接用。
+- 在线版：直接打开 https://gfssm-ai.itccc.app（推荐，手机/平板均可）
+- 离线版：双击打开 `index.html`（建议 Chrome / Edge 浏览器）。整个工具就是这一个文件夹，拷贝给任何学生都能直接用。
+
+> 修改代码后 push 到 `main` 分支，Vercel 会自动重新部署。
 
 ## 核心设计：环境档案（每年自适应）
 
