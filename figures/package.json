@@ -1,0 +1,9 @@
+{
+  "name": "gfssm-figures-build",
+  "private": true,
+  "type": "module",
+  "description": "Build-time only: render Mermaid diagrams with Pele into static SVG.",
+  "devDependencies": {
+    "pele": "1.6.0"
+  }
+}

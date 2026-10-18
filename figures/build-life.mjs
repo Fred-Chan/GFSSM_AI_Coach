@@ -357,7 +357,7 @@ const svg = figureSvg({
 });
 
 const html = plateHtml({
-  fig: "图 6-1",
+  fig: "图 6-2",
   title: "闭环生保试验台",
   hint: "点击阀门 · 空格切换",
   readout: "闭环 · H₂ +14 · O₂ 840 kg/天",

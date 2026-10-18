@@ -37,21 +37,23 @@ GFSSM 每年换目标场地，所以**所有会变的数字都不写死在内容
 
 人工重力（R↔rpm）、环带面积、应急储能（kW×天→kWh）、光伏面积、水回收补给、通信时延，共 6 个即时计算器。
 
-## 交互配图（Anatomy）
+## 交互配图与图表（Anatomy + Pele）
 
 模块 03 与 06 各有一张可操作的等距配图，纯 SVG + 原生 JS，无外部依赖，离线版同样可用：
 
-- **图 3-3 人工重力试验台**（模块 03）：拖旋钮改目标重力、拖曲柄改半径；转速表、试块压缩量与读数由同一个 `a = ω²R` 模型驱动，红线标出 2 rpm 舒适上限。
-- **图 6-1 闭环生保试验台**（模块 06）：点击阀门（或按空格）把甲烷送进热解器，观察氢收支从 −78 kg/天 回到 +14 kg/天，补氢浮子与 O₂ 读数联动。
+- **图 3-4 人工重力试验台**（模块 03）：拖旋钮改目标重力、拖曲柄改半径；转速表、试块压缩量与读数由同一个 `a = ω²R` 模型驱动，红线标出 2 rpm 舒适上限。
+- **图 6-2 闭环生保试验台**（模块 06）：点击阀门（或按空格）把甲烷送进热解器，观察氢收支从 −78 kg/天 回到 +14 kg/天，补氢浮子与 O₂ 读数联动。
 
-配图脚本按需加载（`figures/*.js`），不进首页首屏；构建与数字模型说明见 [`figures/README.md`](figures/README.md)。
+此外，模块 00–12 与 RFP 页还有 **19 张 Mermaid 图表**（Pele 构建时渲染成静态 SVG，按需加载）：学习路线、提案骨架、环境→设计、R–rpm、面积预算、空气/水循环、废物闭环、人居压力源、三条流线、六类接口、负荷结构、90 天储能、54 个月甘特、成本结构、方案取舍、四准则、页面预算、RFP 流程。
+
+配图与图表脚本均按需加载，不进首页首屏；构建、清单与数字模型说明见 [`figures/README.md`](figures/README.md)。
 
 ## 维护指南（给老师）
 
 - **改题**：`data-quiz.js`（通用题）、`data-quiz-env.js`（参数题模板，数值自动代入）。
 - **改知识内容**：`data-learn-a/b/c.js`。其中 `{{gNat}}`、`{{radDayShow}}` 等占位符会自动替换成当前档案的值；`{{#if icy}}…{{/if}}` 是条件段（仅冰下场景显示）。
 - **加场地**：在 `data-env.js` 的 `SCENES` 里加一条即可，全站（含题目）自动支持。
-- **改配图**：改 `figures/build-gravity.mjs` / `build-life.mjs` 后运行 `node figures/build-gravity.mjs`、`node figures/build-life.mjs`；页面里用 `<div class="anatomy-slot" data-figure="gravity|life"></div>` 放置。
+- **改配图**：Anatomy 改 `figures/build-gravity.mjs` / `build-life.mjs`；图表改 `figures/diagrams.mjs` 后运行 `node figures/diagrams.mjs`。页面里分别用 `<div class="anatomy-slot" data-figure="gravity|life"></div>` 与 `<div class="pele-fig" data-diagram="<key>"></div>` 放置。
 - 预设数值为教学典型值，**凡 RFP 原文给了的数一律以原文为准**——档案页支持手动改数。
 
 ## 技术说明

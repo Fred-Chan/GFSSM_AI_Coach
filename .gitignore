@@ -4,3 +4,5 @@ node_modules/
 *.log
 
 figures/shots/
+
+figures/node_modules/

@@ -20,6 +20,8 @@ MODULES.push({
         <tr><td>交通 / 结构 / 设备</td><td class="num">+15%</td><td class="num">≈ 15,400 m²</td><td>通道、竖井、机房、气闸、结构厚度</td></tr>
         <tr><td><b>合计（加压建筑面积）</b></td><td class="num">—</td><td class="num"><b>≈ 118,000 m²</b></td><td>约 118 m²/人；这是"能住得像个城市"的量级</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="area-budget"></div>
+      <p class="pele-cap">图 4-1　1250 人的面积预算：按 4.1 的人均指标与 +15% 附加系数；换人口按比例缩放。</p>
       <div class="callout c-warn"><span class="ct">这些数字不是标准答案</span>
       人均指标必须作为<b>假设</b>写进方案，并说明依据（类比国际空间站、极地科考站、邮轮、地面社区）。评委不会因为"你用了 20 m²"扣分，但会因为你<b>没有说明为什么是 20</b>而扣分。</div>
     ` },
@@ -214,34 +216,18 @@ MODULES.push({
       原因：藻类吃的 CO₂ 和机械环吃的是同一个 CO₂ 池，产的 O₂ 也进同一个舱内气氛。<b>它们是"同一批原子的两条路径"，不是两台并联的机器</b>。你在方案里写"90% + 30% = 120%"，评委会认为你没理解系统。</div>
     ` },
     { h: '6.4 一张合格的空气流程图长什么样', html: `
-      <div class="flow">
-        <div class="node"><b>舱内大气</b>CO₂ 1.0 kg/人·天</div><span class="arw">→</span>
-        <div class="node"><b>CO₂ 浓缩</b>分子筛 / 胺洗</div><span class="arw">→</span>
-        <div class="node hot"><b>Sabatier</b>CO₂ + 4H₂ → CH₄ + 2H₂O</div><span class="arw">→</span>
-        <div class="node"><b>水电解</b>2H₂O → 2H₂ + O₂</div><span class="arw">→</span>
-        <div class="node out"><b>O₂ 回舱</b>≈ 840 kg/天</div>
-      </div>
-      <div class="flow">
-        <div class="node"><b>藻类反应器</b>补 30% 氧需求</div><span class="arw">→</span>
-        <div class="node out"><b>O₂ + 生物量</b>进大气 / 进食物链</div><span class="arw">→</span>
-        <div class="node"><b>CH₄ 处理</b>热解 → C + 2H₂（回收氢）</div><span class="arw">→</span>
-        <div class="node"><b>H₂ 回 Sabatier</b>闭合氢循环</div>
-      </div>
+      <div class="pele-fig" data-diagram="air-loop"></div>
+      <p class="pele-cap">图 6-1　空气主循环：CO₂ → Sabatier → 水电解 → O₂；甲烷热解把氢送回 Sabatier。藻类与机械环路共享同一个 CO₂ 池，所以 90% + 30% 不能相加。</p>
       <p class="small">注意两处"隐藏考点"：① <b>氢平衡</b>——Sabatier 消耗 4 份 H₂、电解 2 份 H₂O 只回收 2 份 H₂，差额必须由额外电解水补，否则系统会"缺氢"；② <b>甲烷</b>是氢的漏点，直接排掉就等于持续丢氢，要闭环就得热解回收。</p>
       <div class="callout c-warn"><span class="ct">常见扣分</span>
       流程图上出现"<b>排气至舱外</b>"或"<b>排放至海洋</b>"的箭头。在零排放（zero discharge）框架下，任何向外部介质的排放都是违规；向舱外排气也必须核算质量损失并给出补偿方案。</div>
       <div class="anatomy-slot" data-figure="life"></div>
-      <p class="anatomy-cap">图 6-1　闭环生保试验台：点击阀门（或按空格）切换甲烷热解。关掉热解时氢收支为 −78 kg/天，打开后回到 +14 kg/天；右侧浮子显示补氢流量。数字按 1000 人、0.84 kg O₂/(人·天) 计算。<a href="./figures/life.html" target="_blank" rel="noopener">单独打开</a></p>
+      <p class="anatomy-cap">图 6-2　闭环生保试验台：点击阀门（或按空格）切换甲烷热解。关掉热解时氢收支为 −78 kg/天，打开后回到 +14 kg/天；右侧浮子显示补氢流量。数字按 1000 人、0.84 kg O₂/(人·天) 计算。<a href="./figures/life.html" target="_blank" rel="noopener">单独打开</a></p>
     ` },
     { h: '6.5 水：回收率 90% 意味着什么', html: `
       <p>水源有四类：<b>冷凝水</b>（呼吸、汗、厨房蒸汽）、<b>灰水</b>（洗涤、淋浴）、<b>尿液</b>（含尿素与盐）、<b>卫生/实验废水</b>。典型处理链：</p>
-      <div class="flow">
-        <div class="node"><b>收集</b>冷凝 / 灰水 / 尿</div><span class="arw">→</span>
-        <div class="node"><b>预处理</b>过滤 + 杀菌</div><span class="arw">→</span>
-        <div class="node"><b>主处理</b>反渗透 / 多效蒸发</div><span class="arw">→</span>
-        <div class="node"><b>精处理</b>催化氧化 + 离子交换</div><span class="arw">→</span>
-        <div class="node out"><b>回用</b>饮用 / 卫生 / 电解</div>
-      </div>
+      <div class="pele-fig" data-diagram="water-loop"></div>
+      <p class="pele-cap">图 6-3　水回收链：125 m³/天 中回收 112.5 m³/天，损失 12.5 m³/天；90% 是为零排放合规，不只是省水。</p>
       <div class="formula"><span class="lbl">回收率的算术（写进方案会比只写"90%"强得多）</span>
 假设 1250 人 × 100 L/(人·天) = 125,000 L/天
 回收率 90% → 回用 112,500 L/天，<b>损失 12,500 L/天（12.5 m³/天）</b>
@@ -319,6 +305,8 @@ MODULES.push({
         <tr><td>塑料/纸</td><td class="num">≈120 kg</td><td>清洗/热解</td><td>原料 90 kg</td><td class="num">≈30 kg（封存）</td></tr>
         <tr><td>CH₄</td><td class="num">≈364 kg</td><td>热解</td><td>C（建材）+ H₂（回用）</td><td class="num">≈0</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="waste-streams"></div>
+      <p class="pele-cap">图 7-1　废物流的三条去向：每条流都要有量、有处理、有最终形态；三条出口之和 = 产生量。</p>
       <p class="small">以上为教学示意数量级，实际数值请按你们的人口、饮食结构和工艺效率重算。</p>
     ` },
     { h: '7.4 一个高级但好用的概念：比质量（kg/人·天）', html: `

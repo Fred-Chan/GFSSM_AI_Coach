@@ -36,6 +36,8 @@ MODULES.push({
       <p>即使有 0.8 g，仍低于地球 1 g。RFP 给的方案是"0.8 g 居住 + 每日在更高重力环境下锻炼"。设计证据：锻炼区位置与重力等级、器材数量（按人口与班次算）、<b>每日 1 小时运动/2 小时休闲</b>的时间-空间容量核算、医疗监测。</p>
       <h4 class="sub">④ 危险与不确定</h4>
       <p>失压、火灾、断电、生保故障。设计证据：<b>分舱 + 独立生保 + 可隔离</b>、双向疏散路径、避难舱容量与 72 小时自持、应急照明与通信、演练机制。</p>
+      <div class="pele-fig" data-diagram="human-factors"></div>
+      <p class="pele-cap">图 8-1　四个压力源与设计证据：无自然光、密闭、低重力、危险；6 个独立舱段是 RFP 的硬指标。</p>
       <div class="callout c-key"><span class="ct">RFP 的硬要求（示例）</span>
       居住区必须能分成<b>至少 6 个相互独立、各配完整生保系统的舱段</b>，事故时可隔离危险区并疏散人员。这是一条"数得出来"的硬指标：6 个舱段 × 各自的生保能力 = 你们的分舱方案与生保冗余设计。</div>
     ` },
@@ -86,6 +88,8 @@ MODULES.push({
         <tr><td>固废/产品</td><td>封闭式输送（气力/轨道），防止污染居住区</td></tr>
         <tr><td><b>信息</b></td><td>全城</td><td>有线主干 + 无线覆盖 + 与地球的深空链路（高时延、断续）</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="infra-flows"></div>
+      <p class="pele-cap">图 9-1　人、物、信息三条流线：信息分支的 35–52 分钟时延，直接决定自治等级与治理结构。</p>
       <div class="callout c-warn"><span class="ct">常见错误</span>
       把人流和货流画在同一条通道上，还标着"高效"。在封闭环境里，这是污染、拥堵与安全的复合风险。</div>
     ` },
@@ -127,6 +131,8 @@ MODULES.push({
         <div class="kvline"><span class="k">信息接口</span><span class="v">主干网、无线覆盖、与地球链路的带宽分配</span></div>
         <div class="kvline"><span class="k">机器接口</span><span class="v">机器人/实验室的对接标准、充电/加注、数据回传</span></div>
       </div>
+      <div class="pele-fig" data-diagram="infra-interfaces"></div>
+      <p class="pele-cap">图 9-2　六类接口清单：电力、热、物质、人员、信息、机器；每一类都要有隔离点和失效方案。</p>
     ` }
   ],
   review: [
@@ -165,6 +171,8 @@ MODULES.push({
         <tr><td>科研</td><td class="num">0.5–3 MW</td><td>10 个实验室，低温/真空/计算需求差异大</td></tr>
         <tr><td>热控与泵阀</td><td class="num">总负荷的 5–10%</td><td>不要漏掉"系统自身的电"</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="power-load"></div>
+      <p class="pele-cap">图 10-1　1250 人的示例分类负荷：生保 6 kW/人、农业 150 W/m²、居住 2 kW/人；未含 1.2–1.3 损耗/同时率。</p>
       <p>把清单加起来，再乘 <b>1.2–1.3</b> 的损耗与同时率系数，得到总负荷。然后分三级：<b>生命攸关（vital）/ 必要（essential）/ 可中断（sheddable）</b>。"最低功率"就是只保留前两级时的功率。</p>
     ` },
     { h: '10.3 发电方式：光伏什么时候就不够用了', html: `
@@ -204,6 +212,8 @@ P：所需电功率（W）　η：组件效率　I：当地辐照（W/m²）
         <tr><td>飞轮 / 超级电容</td><td class="num">低</td><td>只做秒级—分钟级</td></tr>
         <tr><td>热储存</td><td class="num">中</td><td>保温、农业夜间供热可用</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="storage-quadrant"></div>
+      <p class="pele-cap">图 10-2　90 天储能载体：横轴能量密度、纵轴适用时长；要往右上选，而不是堆电池。</p>
       <div class="callout c-eval"><span class="ct">评审视角（这一条很值钱）</span>
       评委问"90 天怎么实现"，最好的回答不是"堆电池"，而是：<b>①定义最低功率与负荷清单 → ②说明燃料/热/电三种储备的分工 → ③给出可核查的 kWh 数与质量估算 → ④说明恢复供电的路径</b>。这体现的是系统思维，而不是算术。</div>
     ` },
@@ -237,6 +247,8 @@ MODULES.push({
         <tr><td>工业 / 农业 / 港口</td><td class="num">12–18</td><td>可分段投用</td></tr>
         <tr><td>联调、验收、移交</td><td class="num">6</td><td>不可省；RFP 要求移交 IDSDO 运营</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="gantt-54"></div>
+      <p class="pele-cap">图 11-1　54 个月示例进度：设计与长周期采购并行，能源/生保先行；按你们的 RFP 日期重排，并标出关键路径。</p>
       <div class="callout c-key"><span class="ct">关键路径（Critical Path）</span>
       从起点到终点<b>最长</b>的那条任务链。它决定总工期：这条链上任何一天延误，整体就延误一天。压缩工期只有两种办法：<b>压缩关键路径上的任务</b>，或<b>把串行改成并行</b>（前提是能承担返工风险）。</div>
     ` },
@@ -247,6 +259,8 @@ MODULES.push({
         <li><b>自下而上</b>：主要成本项 = 结构材料与制造 + 运输发射 + 设备（生保/能源/农业）+ 人力 + 备件 + 不可预见费（15–20%）。</li>
         <li><b>单位成本校核</b>：每 kW 发电成本、每 m² 加压面积成本、每人年运营成本。用这些指标横向比较，能看出你们的数字是否离谱。</li>
       </ul>
+      <div class="pele-fig" data-diagram="cost-structure"></div>
+      <p class="pele-cap">图 11-2　示例成本结构：比例只用于说明“分项 + 不可预见费”的写法；用你们自己的成本表替换。</p>
       <div class="callout c-warn"><span class="ct">常见翻车</span>
       甘特图写 54 个月，成本表却按 60 个月分摊；或者建造阶段的人数写 200 人，人力成本却按 2000 人算。这类内部矛盾会被 Systematic 直接扣分。</div>
     ` },
@@ -258,6 +272,8 @@ MODULES.push({
         <tr><td>B：居住环 + 独立农业环</td><td class="num">中</td><td class="num">低</td><td class="num">分散、可分段投用</td><td><b>选 B</b></td></tr>
         <tr><td>C：全地下隧道式</td><td class="num">低</td><td class="num">高</td><td class="num">开挖风险、无重力</td><td>不满足 0.8 g</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="tradeoff-quadrant"></div>
+      <p class="pele-cap">图 11-3　A/B/C 方案取舍：把“为什么选 B”放到同一张图上；位置按 11.3 的高/中/低相对示意。</p>
       <p>注意：<b>"我们选了 B 因为更便宜"不是权衡</b>；要写清"B 的初投资比 A 低 X%，因为周长减少 Y 米、屏蔽质量减少 Z 吨；代价是增加一处旋转接口，年维护成本 +W"。</p>
     ` }
   ],
@@ -276,6 +292,11 @@ MODULES.push({
   sub: '同样的设计，表达方式不同，分数能差一档。这一节讲"怎么让评委看见你做对了"。',
   oneLine: '评审四准则：完整（逐条回应）、合理（数字有依据）、系统（跨章节自洽）、经济（有权衡）。',
   sections: [
+    { h: '12.0 先看评分：四准则各自要什么证据', html: `
+      <p>评委不是在找“最酷的方案”，而是在四个维度上找证据。把这张图贴在组内，每次写完一章就回头问：这一章给哪条准则提供了什么证据？</p>
+      <div class="pele-fig" data-diagram="review-criteria"></div>
+      <p class="pele-cap">图 12-1　评审四准则与证据：每一组都能在方案里找到对应的图或数。</p>
+    ` },
     { h: '12.1 文件规范：这些是"不商量"的硬要求', html: `
       <div class="table-wrap"><table>
         <tr><th style="width:26%">要求</th><th>典型 RFP 原文要点</th><th style="width:20%">违规后果</th></tr>
@@ -301,6 +322,8 @@ MODULES.push({
         <tr><td class="num">25–27</td><td>甘特图、成本表、权衡分析</td><td>§6.1–6.2</td></tr>
         <tr><td class="num">28–30</td><td>风险与对策、团队分工、参考文献</td><td>加分项</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="page-budget"></div>
+      <p class="pele-cap">图 12-2　30 页提案的页面预算：前 2 页说清全局，中间按 RFP 章节展开。</p>
     ` },
     { h: '12.3 图纸七要素：一张图能不能被"读懂"', html: `
       <div class="grid-2">

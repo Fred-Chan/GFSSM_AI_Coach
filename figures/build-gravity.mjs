@@ -491,7 +491,7 @@ function crankHandleAt(radiusM, P) {
 }
 
 const html = plateHtml({
-  fig: "图 3-3",
+  fig: "图 3-4",
   title: "人工重力试验台",
   hint: "拖动旋钮 / 曲柄",
   readout: "180 m · 2.0 rpm · 0.80 g",

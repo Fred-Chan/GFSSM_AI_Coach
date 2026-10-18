@@ -109,14 +109,15 @@
     const view = $('#view');
     window.scrollTo(0, 0);
     $$('#nav .nav-item, #nav .nav-env').forEach(b => b.classList.toggle('active', b.dataset.go === h));
-    if (h === 'envset') { view.innerHTML = fillEnv(viewEnv()); bindEnv(); mountFigures(view); return; }
-    if (h === 'quiz') { view.innerHTML = fillEnv(viewQuiz()); bindQuiz(); mountFigures(view); return; }
-    if (h === 'rfp') { view.innerHTML = fillEnv(viewRFP()); bindRFP(); mountFigures(view); return; }
-    if (h === 'tools') { view.innerHTML = fillEnv(viewTools()); bindTools(); mountFigures(view); return; }
+    if (h === 'envset') { view.innerHTML = fillEnv(viewEnv()); bindEnv(); mountFigures(view); mountDiagrams(view); return; }
+    if (h === 'quiz') { view.innerHTML = fillEnv(viewQuiz()); bindQuiz(); mountFigures(view); mountDiagrams(view); return; }
+    if (h === 'rfp') { view.innerHTML = fillEnv(viewRFP()); bindRFP(); mountFigures(view); mountDiagrams(view); return; }
+    if (h === 'tools') { view.innerHTML = fillEnv(viewTools()); bindTools(); mountFigures(view); mountDiagrams(view); return; }
     const m = modById(h) || MODULES[0];
     view.innerHTML = fillEnv(viewLearn(m));
     bindLearn(m);
     mountFigures(view);
+    mountDiagrams(view);
   }
 
   /* ---------------- learn ---------------- */
@@ -816,7 +817,9 @@
         title: '把你的 RFP 变成一张“要做什么”的清单',
         sub: '上传 PDF / DOCX，或直接粘贴文字。工具会拆出章节、交付物、硬指标，并对应到前面学的知识模块。',
         meta: '<span class="badge b-blue">本地解析，不上传网络</span><span class="badge b-gray">支持 PDF / DOCX / TXT</span>'
-      }) + rfpUploadHTML();
+      }) + rfpUploadHTML() +
+      '<div class="pele-fig" data-diagram="rfp-pipeline"></div>' +
+      '<p class="pele-cap">图 R-1　从 RFP 到可执行清单：本地解析只做拆解与关联，原文仍是最终依据。</p>';
     }
     const A = analyze(store.rfp.text);
     const tab = store.tab || 'overview';
@@ -1224,6 +1227,54 @@
         el.innerHTML = '<div class="anatomy-loading">配图加载失败。可打开 <a href="' + FIGURE_BASE + name + '.html" target="_blank" rel="noopener">独立页面</a>。</div>';
       };
       document.body.appendChild(s);
+    });
+  }
+
+  /* ---------------- Pele diagrams ----------------
+     Mermaid -> static SVG, rendered at build time; only the registry is lazy-loaded. */
+  const DIAGRAM_SRC = './figures/diagrams.js';
+  let diagramLoad = null;
+  function loadDiagrams() {
+    if (window.PELE_DIAGRAMS) return Promise.resolve();
+    if (diagramLoad) return diagramLoad;
+    diagramLoad = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = DIAGRAM_SRC;
+      s.onload = () => resolve();
+      s.onerror = () => reject(new Error('diagrams.js'));
+      document.body.appendChild(s);
+    });
+    return diagramLoad;
+  }
+  function mountDiagrams(root) {
+    const slots = $$('[data-diagram]', root);
+    if (!slots.length) return;
+    slots.forEach(el => {
+      if (!el.dataset.mounted) el.innerHTML = '<div class="pele-loading">正在加载图表…</div>';
+    });
+    loadDiagrams().then(() => {
+      const narrow = matchMedia('(max-width: 560px)');
+      slots.forEach(el => {
+        if (el.dataset.mounted || !el.isConnected) return;
+        const d = window.PELE_DIAGRAMS && window.PELE_DIAGRAMS[el.dataset.diagram];
+        if (!d) return;
+        el.setAttribute('role', 'img');
+        el.setAttribute('aria-label', d.title || '图表');
+        const paint = () => {
+          el.innerHTML = narrow.matches ? d.narrow : d.wide;
+          el.dataset.narrow = narrow.matches ? '1' : '0';
+        };
+        paint();
+        el.dataset.mounted = '1';
+        if (narrow.addEventListener) {
+          narrow.addEventListener('change', () => { if (el.isConnected) paint(); });
+        }
+      });
+    }).catch(() => {
+      slots.forEach(el => {
+        if (el.dataset.mounted) return;
+        el.innerHTML = '<div class="pele-loading">图表加载失败。可打开 <a href="' + DIAGRAM_SRC + '" target="_blank" rel="noopener">图表数据</a> 检查。</div>';
+      });
     });
   }
 

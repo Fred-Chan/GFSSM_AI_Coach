@@ -24,6 +24,8 @@ MODULES.push({
         <tr><td><b>第 3 遍</b></td><td>模块 08–11（人居、基础设施、进度成本、呈现与评审）→ 自测</td><td>60 分钟</td></tr>
         <tr><td><b>上手</b></td><td>上传 RFP，拿到"你们这届要交付什么"的清单，再开始组内分工</td><td>30 分钟</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="start-route"></div>
+      <p class="pele-cap">图 0-1　三遍学习路线：先建立量级感，再补系统，最后对齐评审；每遍配一次自测。</p>
       <div class="callout c-warn"><span class="ct">边界（很重要）</span>
         这套工具<b>不产出</b>方案、参数、图纸、PPT 文字。它只解释原理、指出 RFP 要求了什么、告诉你评委会从哪里挑问题。所有取舍必须由你们自己做，并且能说出理由——RFP 的评审准则里 "Rationality" 权重最高，评委一问"为什么是这个数"，背不出来的方案就废了。</div>
       <div class="callout c-ok"><span class="ct">一个有效习惯</span>
@@ -59,6 +61,8 @@ MODULES.push({
         <tr><td>Requirements for Submission</td><td>文件格式、页数、比例、命名——<b>这些是硬性扣分项</b></td><td>12</td></tr>
         <tr><td>Criteria of Evaluation</td><td>评委怎么打分：完整 / 合理 / 系统 / 经济</td><td>12</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="proposal-skeleton"></div>
+      <p class="pele-cap">图 1-1　提案骨架：RFP 章节直接变成 PPT 目录，也是组内分工表。</p>
       <div class="callout c-warn"><span class="ct">个人能力测评组请注意</span>
       资格轮的个人测评（约 90 分钟、约 20 题、全选择题）<b>不需要你做完整设计</b>，但要求你对结构、运营、人居、基础设施、商业五个方向都有基础了解：通用能力约占 60%，五个方向合计约占 40%。本工具的知识模块就是按这个能力框架排的——<b>模块 03/04/05 = 结构</b>，<b>06/07/10 = 运营与商业</b>，<b>08 = 人居</b>，<b>09 = 基础设施</b>。</div>
     ` },
@@ -184,6 +188,8 @@ MODULES.push({
         <tr><td>主要危害</td><td class="num">—</td><td>{{hazard}}</td></tr>
         <tr><td>就地资源</td><td class="num">—</td><td>{{resources}}</td></tr>
       </table></div>
+      <div class="pele-fig" data-diagram="env-to-design"></div>
+      <p class="pele-cap">图 2-1　环境维度 → 设计动作：储能与自治由昼夜、通信时延共同决定。</p>
       <div class="callout c-key"><span class="ct">这张表才是"环境章节"的正文</span>
       RFP 的场地描述通常只有几段话，但评委要看到的是<b>这十几行指标，以及每一行落到哪个设计动作</b>。抄一遍背景介绍拿不到分，把背景翻译成参数才拿得到分。</div>
       <div class="callout c-warn"><span class="ct">数字从哪来</span>
@@ -328,6 +334,8 @@ R：居住地板到旋转轴的距离（m）
         <li><b>高转速</b>：结构省，但科里奥利效应让人难受；而且旋转界面、密封和噪声也更难处理。</li>
       </ul>
       <p>这就是一个典型的 <b>trade-off</b>：RFP 只给"0.8 g"，没给半径和转速，是因为它想看你<b>怎么权衡并论证</b>。写方案时至少要做一张两方案对比表（半径/转速/结构质量/舒适度/成本）。</p>
+      <div class="pele-fig" data-diagram="gravity-rpm"></div>
+      <p class="pele-cap">图 3-2　0.8 g 时的半径—转速设计空间：R 从 120 m 到 260 m，转速从 2.44 降到 1.66 rpm；水平线是 2 rpm 舒适上限。</p>
       <div class="callout c-eval"><span class="ct">评审视角</span>
       评委看三件事：① 图纸上有没有标<b>重力方向</b>；② 有没有给<b>半径 + 转速 + 计算过程</b>；③ 这个半径和你们的建筑面积、结构方案、成本表是否<b>自洽</b>。只写"我们采用 0.8 g"而不给数字，等于没做。</div>
     ` },
@@ -353,12 +361,12 @@ R：居住地板到旋转轴的距离（m）
           <text x="384" y="158" font-size="10.5" fill="#C78318" text-anchor="middle">R</text>
           <text x="40" y="300" font-size="11" fill="#6B7488">图：以转轴为圆心，按重力需求分层布置功能区；外圈居住，轴心港口。</text>
         </svg>
-        <figcaption>图 3-2　分级重力布局。注意：这只是原理示意，具体半径由你们的 0.8 g 要求反算，不能照抄。</figcaption>
+        <figcaption>图 3-3　分级重力布局。注意：这只是原理示意，具体半径由你们的 0.8 g 要求反算，不能照抄。</figcaption>
       </figure>
       <p><b>为什么港口要放在轴心？</b>三个理由：① 飞船不需要在旋转状态下对接，接口最简单；② 轴心 0 g 便于大质量货物漂浮转运；③ 避免在旋转界面上开大开口（每个穿越旋转面的通道都是泄漏与结构风险点）。</p>
       <p><b>为什么农业常放中间层？</b>如果 RFP 没规定农业重力，就按作物适应性选（很多作物在 0.3 g 左右可正常生长），同时靠近生保与废物处理，缩短物质流路径。</p>
       <div class="anatomy-slot" data-figure="gravity"></div>
-      <p class="anatomy-cap">图 3-3　人工重力试验台：转动曲柄改半径 R，转动旋钮改目标重力；转速表红线是 2 rpm 舒适上限。试块压缩量、转速表与右下角读数由同一个 a = ω²R 模型驱动。<a href="./figures/gravity.html" target="_blank" rel="noopener">单独打开</a></p>
+      <p class="anatomy-cap">图 3-4　人工重力试验台：转动曲柄改半径 R，转动旋钮改目标重力；转速表红线是 2 rpm 舒适上限。试块压缩量、转速表与右下角读数由同一个 a = ω²R 模型驱动。<a href="./figures/gravity.html" target="_blank" rel="noopener">单独打开</a></p>
     ` },
     { h: '3.6 深度界线：哪些要会，哪些知道就行', html: `
       <p>旋转城市确实有大量真实的工程难题。但<b>本项目的考点不是让你去做机构设计</b>——你的任务是想清楚空间怎么排、系统怎么配、代价怎么算。所以这一节只保留两个"必须能说出来"的点，其余的了解即可。</p>
