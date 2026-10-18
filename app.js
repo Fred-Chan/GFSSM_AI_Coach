@@ -109,13 +109,14 @@
     const view = $('#view');
     window.scrollTo(0, 0);
     $$('#nav .nav-item, #nav .nav-env').forEach(b => b.classList.toggle('active', b.dataset.go === h));
-    if (h === 'envset') { view.innerHTML = fillEnv(viewEnv()); bindEnv(); return; }
-    if (h === 'quiz') { view.innerHTML = fillEnv(viewQuiz()); bindQuiz(); return; }
-    if (h === 'rfp') { view.innerHTML = fillEnv(viewRFP()); bindRFP(); return; }
-    if (h === 'tools') { view.innerHTML = fillEnv(viewTools()); bindTools(); return; }
+    if (h === 'envset') { view.innerHTML = fillEnv(viewEnv()); bindEnv(); mountFigures(view); return; }
+    if (h === 'quiz') { view.innerHTML = fillEnv(viewQuiz()); bindQuiz(); mountFigures(view); return; }
+    if (h === 'rfp') { view.innerHTML = fillEnv(viewRFP()); bindRFP(); mountFigures(view); return; }
+    if (h === 'tools') { view.innerHTML = fillEnv(viewTools()); bindTools(); mountFigures(view); return; }
     const m = modById(h) || MODULES[0];
     view.innerHTML = fillEnv(viewLearn(m));
     bindLearn(m);
+    mountFigures(view);
   }
 
   /* ---------------- learn ---------------- */
@@ -1191,6 +1192,39 @@
     ['#g-g', '#g-r', '#a-r', '#a-w', '#a-p', '#s-p', '#s-d', '#p-p', '#p-e', '#p-i', '#w-n', '#w-l', '#w-r', '#d-au']
       .forEach(s => { const el = $(s); if (el) el.addEventListener('input', upd); });
     upd();
+  }
+
+  /* ---------------- anatomy figures ----------------
+     图表按需加载：只有当前页出现 data-figure 时才拉 figures/<name>.js。 */
+  const FIGURE_BASE = './figures/';
+  function mountFigures(root) {
+    $$('[data-figure]', root).forEach(el => {
+      if (el.dataset.mounted) return;
+      const name = el.dataset.figure;
+      const mount = () => {
+        if (el.dataset.mounted || !el.isConnected) return;
+        const fig = window.ANATOMY_FIGURES && window.ANATOMY_FIGURES[name];
+        if (!fig || !fig.html) return;
+        el.classList.add('iso');
+        el.setAttribute('data-theme', 'light');
+        el.innerHTML = fig.html;
+        const readout = el.querySelector('[data-readout]');
+        if (readout) readout.setAttribute('aria-live', 'polite');
+        el.dataset.mounted = '1';
+        try { fig.init(el); } catch (err) { console.error('figure ' + name, err); }
+      };
+      if (window.ANATOMY_FIGURES && window.ANATOMY_FIGURES[name]) { mount(); return; }
+      if (el.dataset.loading) return;
+      el.dataset.loading = '1';
+      el.innerHTML = '<div class="anatomy-loading">正在加载交互配图…</div>';
+      const s = document.createElement('script');
+      s.src = FIGURE_BASE + name + '.js';
+      s.onload = () => { el.dataset.loading = ''; mount(); };
+      s.onerror = () => { el.dataset.loading = '';
+        el.innerHTML = '<div class="anatomy-loading">配图加载失败。可打开 <a href="' + FIGURE_BASE + name + '.html" target="_blank" rel="noopener">独立页面</a>。</div>';
+      };
+      document.body.appendChild(s);
+    });
   }
 
   /* ---------------- boot ---------------- */

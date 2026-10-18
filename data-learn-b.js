@@ -230,6 +230,8 @@ MODULES.push({
       <p class="small">注意两处"隐藏考点"：① <b>氢平衡</b>——Sabatier 消耗 4 份 H₂、电解 2 份 H₂O 只回收 2 份 H₂，差额必须由额外电解水补，否则系统会"缺氢"；② <b>甲烷</b>是氢的漏点，直接排掉就等于持续丢氢，要闭环就得热解回收。</p>
       <div class="callout c-warn"><span class="ct">常见扣分</span>
       流程图上出现"<b>排气至舱外</b>"或"<b>排放至海洋</b>"的箭头。在零排放（zero discharge）框架下，任何向外部介质的排放都是违规；向舱外排气也必须核算质量损失并给出补偿方案。</div>
+      <div class="anatomy-slot" data-figure="life"></div>
+      <p class="anatomy-cap">图 6-1　闭环生保试验台：点击阀门（或按空格）切换甲烷热解。关掉热解时氢收支为 −78 kg/天，打开后回到 +14 kg/天；右侧浮子显示补氢流量。数字按 1000 人、0.84 kg O₂/(人·天) 计算。<a href="./figures/life.html" target="_blank" rel="noopener">单独打开</a></p>
     ` },
     { h: '6.5 水：回收率 90% 意味着什么', html: `
       <p>水源有四类：<b>冷凝水</b>（呼吸、汗、厨房蒸汽）、<b>灰水</b>（洗涤、淋浴）、<b>尿液</b>（含尿素与盐）、<b>卫生/实验废水</b>。典型处理链：</p>

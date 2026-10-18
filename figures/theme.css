@@ -1,0 +1,35 @@
+/* Site theme for Anatomy figures: blue-grey ink on paper, matching GFSSM AI Coach. */
+.iso[data-theme="light"]{
+  --anatomy-page:#F6F7FB;
+  --anatomy-card:#FFFFFF;
+  --anatomy-text:#3C455C;
+  --anatomy-strong:#111729;
+  --anatomy-muted:#6B7488;
+  --anatomy-paper:#FFFFFF;
+  --anatomy-face:#FFFFFF;
+  --anatomy-top:#FFFFFF;
+  --anatomy-shade-0:#D3DBEA;
+  --anatomy-shade-1:#DEE5F1;
+  --anatomy-shade-2:#E9EEF7;
+  --anatomy-shade-3:#F3F6FC;
+  --anatomy-lit-top:#FFFFFF;
+  --anatomy-lit-shade:#DCE5FF;
+  --anatomy-hi:#111729;
+  --anatomy-mid:#5B6780;
+  --anatomy-lo:#9AA6BD;
+  --anatomy-faint:#D2DAE8;
+  --anatomy-lit:#2F5BEA;
+  --anatomy-halo:#7C8AA5;
+  --anatomy-halo-opacity:.22;
+  --anatomy-dot:#2A3350;
+  --anatomy-red:#D0453F;
+  --anatomy-green:#1E9E6A;
+  --anatomy-blue:#2F5BEA;
+  --anatomy-weight:.8px;
+  --anatomy-mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  --anatomy-lift:0 1px 2px rgba(17,23,41,.04),0 8px 24px rgba(17,23,41,.05);
+}
+.iso .iso-plate{border-radius:16px;box-shadow:0 1px 2px rgba(17,23,41,.04),0 8px 24px rgba(17,23,41,.05);}
+.iso .iso-stage{touch-action:none;outline:none}
+.iso .iso-stage:focus-visible{outline:2px solid var(--anatomy-lit);outline-offset:5px;border-radius:6px}
+.iso .iso-figure{margin:0}

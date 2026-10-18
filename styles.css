@@ -184,6 +184,22 @@ figure{margin:20px 0;padding:0}
 figure svg{width:100%;height:auto;display:block;border-radius:12px;background:#FBFCFE;border:1px solid var(--line-2)}
 figcaption{font-size:12.5px;color:var(--muted);margin-top:7px;text-align:center}
 
+/* ---------- anatomy figures ---------- */
+.anatomy-slot{margin:22px 0 6px;border-radius:16px;min-height:24px}
+.anatomy-slot .iso-plate{border-radius:16px}
+.anatomy-slot .iso-svg{width:100%;height:auto;border:0;background:transparent;border-radius:0}
+.anatomy-slot .iso-figure{margin:0}
+.anatomy-cap{font-size:12.5px;color:var(--muted);margin:8px 0 24px;text-align:center;line-height:1.7}
+.anatomy-loading{padding:34px 16px;text-align:center;color:var(--muted);font-size:13px;border:1px dashed var(--line);border-radius:14px;background:#fff}
+.anatomy-loading a{font-weight:600}
+@media (max-width:560px){
+  .anatomy-slot{margin:18px -2px 4px}
+  .anatomy-slot .iso-plate{padding:46px 10px 66px}
+  .anatomy-slot .iso-plate-corner{font-size:9.5px}
+  .anatomy-slot .iso-plate-corners{inset:15px 12px}
+  .anatomy-cap{font-size:12px;margin-bottom:20px}
+}
+
 /* ---------- quiz ---------- */
 .quiz-top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}
 .qbar{height:6px;background:#EAEEF7;border-radius:4px;overflow:hidden;flex:1;min-width:160px}
