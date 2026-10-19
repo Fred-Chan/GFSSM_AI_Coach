@@ -43,7 +43,7 @@ MODULES.push({
   oneLine: 'GFSSM = 以"航天企业"身份回应 IDSDO 的招标书；评分看四件事：完整、合理、系统、经济。',
   sections: [
     { h: '1.1 场景设定：一份虚构但认真的招标', html: `
-      <p>每年组委会会构造一个未来情境（年份通常设定在 2050 年之后，多为本世纪中后期，例如 2100 年前后），由虚构的 <b>IDSDO</b>（International Deep Space Development Organization）发布 <b>RFP</b>（Request for Proposal，需求建议书 / 招标书），邀请"企业"竞标一个太空定居点项目。你们就是那家企业。</p>
+      <p>每年组委会会构造一个未来情境（年份通常设定在 2030 年之后，多为本世纪中后期，例如 2100 年前后），由虚构的 <b>IDSDO</b>（International Deep Space Development Organization）发布 <b>RFP</b>（Request for Proposal，需求建议书 / 招标书），邀请"企业"竞标一个太空定居点项目。你们就是那家企业。</p>
       <p>历年主题大致是：月球基地 → 火星基地 → 小行星 → 太空电梯 → 水星 / 金星 → 火星轨道太空城（Vulcan, 2025）→ 小行星带（Psyche, 2026）→ <b>木卫二 Galileo（2027）</b>。主题每年换，但 <b>RFP 的结构几乎不变</b>——这就是为什么"学会读一份 RFP"比"背某一年的答案"有用得多。</p>
       <div class="callout c-key"><span class="ct">一个关键认识</span>
       RFP 里写的是<b>甲方要什么</b>，不是<b>你要怎么做</b>。它给数字（人数、重力要求、运行时限、建造深度）、给交付物（图、表、流程图）、给准则（四个评价维度），但把"怎么实现"留给你。所以读 RFP 的第一层功夫是：<b>把"要求"和"做法"分开</b>。</div>
@@ -52,7 +52,7 @@ MODULES.push({
       <p>以历年资格轮 RFP 为例，Statement of Work（工作说明）的章节结构就是你们 PPT 的目录：</p>
       <div class="table-wrap"><table>
         <tr><th style="width:34%">RFP 章节</th><th>它其实在问什么</th><th style="width:22%">对应本工具模块</th></tr>
-        <tr><td>Executive Summary</td><td>服务多少人、建成什么样、怎么运营——一段话说清全局</td><td>01 / 04</td></tr>
+        <tr><td>内容概要</td><td>服务多少人、建成什么样、怎么运营——一段话说清全局</td><td>01 / 04</td></tr>
         <tr><td>Structure and Construction<br><span class="small">2.1 总体 / 2.2 表面港 / 2.3 建造顺序</span></td><td>空间怎么组织、每个体量干什么用、多大、转不转、增不增压、怎么一步步建起来</td><td>03 / 04 / 05</td></tr>
         <tr><td>Operation and Maintenance<br><span class="small">3.1 电力 / 3.2 生保 / 3.3 农业</span></td><td>电从哪来、断供 90 天怎么办；空气水废物怎么循环；饭从哪来</td><td>06 / 07 / 10</td></tr>
         <tr><td>Human Factors<br><span class="small">4.1 居住 / 4.2 心理 / 4.3 应急</span></td><td>人长期住在冰下、低重力、封闭环境里会不会疯、会不会病、出事怎么办</td><td>08</td></tr>
