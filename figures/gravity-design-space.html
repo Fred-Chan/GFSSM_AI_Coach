@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人工重力设计空间 · 交互版 | GFSSM AI Coach</title>
+<style>
+:root{
+  --bg:#F6F7FB;--surface:#FFFFFF;--surface-2:#FAFBFF;
+  --ink:#111729;--ink-2:#3C455C;--muted:#6B7488;
+  --line:#E6E9F2;--line-2:#EFF2F8;
+  --blue:#2F5BEA;--blue-soft:#EDF1FE;--blue-deep:#16245A;
+  --teal:#0E9F9F;--teal-soft:#E8F7F7;
+  --amber:#C78318;--amber-soft:#FDF4E4;
+  --red:#D0453F;--red-soft:#FCEDEC;
+  --green:#1E9E6A;--green-soft:#E9F7F0;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  --shadow:0 1px 2px rgba(17,23,41,.04),0 8px 24px rgba(17,23,41,.045);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;overflow-x:hidden}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:920px;margin:0 auto;padding:38px 20px 64px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:1.6px;color:var(--muted);margin:0 0 10px;text-transform:uppercase}
+h1{font-size:27px;line-height:1.3;margin:0 0 10px;letter-spacing:-.2px}
+.lede{margin:0;color:var(--ink-2);font-size:15px;max-width:760px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow);margin-top:22px;min-width:0}
+.card h2{font-size:16px;margin:0 0 4px;letter-spacing:.1px}
+.card .sub{font-size:12.5px;color:var(--muted);margin:0 0 16px}
+.formula{font-family:var(--mono);font-size:12.5px;line-height:1.9;color:var(--blue-deep);background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:8px;padding:12px 14px;margin:0 0 18px;overflow-x:auto;white-space:nowrap}
+.seg{display:inline-flex;gap:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:4px;margin-bottom:16px}
+.seg button{font-family:inherit;font-size:13px;color:var(--ink-2);background:transparent;border:0;border-radius:7px;padding:7px 14px;cursor:pointer;transition:background .16s,color .16s}
+.seg button:hover{background:#fff}
+.seg button.on{background:var(--blue);color:#fff;box-shadow:0 1px 2px rgba(47,91,234,.3)}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.metric{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
+.metric .k{font-size:12px;color:var(--muted);white-space:nowrap}
+.metric .v{font-size:21px;font-weight:600;letter-spacing:-.3px;font-variant-numeric:tabular-nums}
+.metric .v small{font-size:12px;font-weight:400;color:var(--muted);margin-left:2px}
+.metric.warn{background:var(--amber-soft);border-color:#F0DDB8}
+.metric.ok{background:var(--green-soft);border-color:#C6E8D8}
+.metric.bad{background:var(--red-soft);border-color:#F3CFCD}
+.metric .v.warn{color:var(--amber)}
+.metric .v.ok{color:var(--green)}
+.metric .v.bad{color:var(--red)}
+.slider-row{display:flex;align-items:center;gap:14px;margin:4px 0 2px}
+.slider-row input[type=range]{flex:1;accent-color:var(--blue);height:22px;cursor:pointer}
+.slider-row .ends{font-family:var(--mono);font-size:11px;color:var(--muted);flex:none}
+.hint{font-size:13px;margin:10px 0 0;padding:10px 12px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2)}
+.hint b{color:var(--ink)}
+.chart-scroll{overflow-x:auto;margin:6px 0 0}
+.fig-scroll{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+svg text{font-family:var(--sans);fill:var(--ink-2)}
+figure{margin:6px 0 0}
+figcaption{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.7}
+figcaption b{color:var(--ink-2);font-weight:600}
+ul.clean{margin:10px 0 0;padding-left:20px;color:var(--ink-2);font-size:14px}
+ul.clean li{margin:6px 0}
+ul.clean b{color:var(--ink)}
+.eval{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.eval div{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--ink-2)}
+.eval b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:3px}
+footer{margin-top:26px;font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:760px){
+  .wrap{padding:26px 14px 48px;overflow-x:hidden}
+  h1{font-size:20px;line-height:1.35}
+  .lede{font-size:14px}
+  .card{padding:18px 16px;border-radius:14px}
+  .formula{white-space:normal;word-break:break-word;line-height:1.7}
+  .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .eval{grid-template-columns:1fr}
+  .chart-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .chart-scroll svg{min-width:620px}
+  .fig-scroll svg{min-width:520px}
+  .seg{display:flex;width:100%}
+  .seg button{flex:1;padding:7px 8px;font-size:12.5px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="kicker">模块 03 · Gravity · 图 3-2 交互版</p>
+  <h1>人工重力设计空间：半径与转速是绑死的</h1>
+  <p class="lede">RFP 只给“0.80 g”，没给半径和转速——因为要看你<b>怎么权衡并论证</b>。拖动下面的滑杆，看同一个重力需求下，半径和转速如何互相锁死，以及 2 rpm 舒适上限到底卡在哪。</p>
+
+  <section class="card">
+    <h2>半径—转速设计空间</h2>
+    <p class="sub">a = ω²R，转速由半径反算；虚线是 2 rpm 舒适上限</p>
+    <p class="formula" id="formula"></p>
+    <div class="seg" role="group" aria-label="目标重力">
+      <button type="button" class="on" data-a="0.8">0.80 g（本年 RFP）</button>
+      <button type="button" data-a="0.4">0.40 g（对比）</button>
+    </div>
+    <div class="metrics">
+      <div class="metric"><div class="k">半径 R</div><div class="v"><span id="valR">179</span><small>m</small></div></div>
+      <div class="metric"><div class="k">转速 n</div><div class="v"><span id="valN">2.00</span><small>rpm</small></div></div>
+      <div class="metric"><div class="k">2 rpm 下最小半径</div><div class="v"><span id="valMin">179</span><small>m</small></div></div>
+      <div class="metric warn" id="badgeCard"><div class="k">判定</div><div class="v warn" id="badge" style="font-size:16px;padding-top:3px">临界</div></div>
+    </div>
+    <div class="slider-row">
+      <span class="ends">60 m</span>
+      <input id="rRange" type="range" min="60" max="500" step="1" value="179" aria-label="居住地板到轴心的半径 R（米）">
+      <span class="ends">500 m</span>
+    </div>
+    <div class="chart-scroll">
+      <svg viewBox="0 0 860 420" width="100%" role="img" aria-label="不同半径下的转速曲线，虚线为 2 rpm 舒适上限">
+        <defs><clipPath id="plotClip"><rect x="90" y="40" width="738" height="328"></rect></clipPath></defs>
+        <rect x="90" y="40" width="738" height="179" fill="#FCEDEC" opacity=".6"></rect>
+        <rect x="90" y="219" width="738" height="149" fill="#E9F7F0" opacity=".7"></rect>
+        <g id="grid"></g>
+        <line x1="90" y1="368" x2="828" y2="368" stroke="#C9CFDD" stroke-width="1"></line>
+        <line x1="90" y1="40" x2="90" y2="368" stroke="#C9CFDD" stroke-width="1"></line>
+        <g id="ticks"></g>
+        <line x1="90" y1="219" x2="828" y2="219" stroke="#D0453F" stroke-width="1.4" stroke-dasharray="6 4"></line>
+        <text x="822" y="211" text-anchor="end" font-size="11.5" fill="#D0453F">2 rpm 舒适上限</text>
+        <text x="252" y="60" font-size="11.5" fill="#B4433D">转速过高：头晕、转身恶心、物体拐弯</text>
+        <text x="822" y="356" text-anchor="end" font-size="11.5" fill="#1E7C5A">舒适区</text>
+        <path id="curve" fill="none" stroke="#2F5BEA" stroke-width="2.6" clip-path="url(#plotClip)"></path>
+        <g id="dyn"></g>
+        <text x="459" y="404" text-anchor="middle" font-size="12.5" fill="#3C455C">居住地板到轴心的半径 R（m）</text>
+        <text x="34" y="204" text-anchor="middle" font-size="12.5" fill="#3C455C" transform="rotate(-90 34 204)">转速 n（rpm）</text>
+      </svg>
+    </div>
+    <p class="hint" id="hint"></p>
+    <figcaption>同一曲线：<b>R 越小 → 转速越高</b>，且不是线性关系（n ∝ 1/√R）。所以“转快点让重力大一点”在工程上不成立——先受不了的是人。曲线随所选目标重力整体移动，说明“要求几 g”本身就是一个工程决策，不是抄来的常数。</figcaption>
+  </section>
+
+  <section class="card">
+    <h2>方向：脚朝外，头朝轴</h2>
+    <p class="sub">最反直觉的一步——环里的“上下”与地球直觉正好相反</p>
+    <figure class="fig-scroll">
+      <svg viewBox="0 0 680 428" width="100%" role="img" aria-label="旋转环剖面：重力沿半径向外，轴心为 0 g">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </marker>
+        </defs>
+        <circle cx="330" cy="218" r="148" fill="#2F5BEA"></circle>
+        <circle cx="330" cy="218" r="131" fill="#F4F7FF"></circle>
+        <circle cx="330" cy="218" r="99" fill="#EFF2F8"></circle>
+        <circle cx="330" cy="218" r="131" fill="none" stroke="#C9D6F5" stroke-width="1"></circle>
+        <circle cx="330" cy="218" r="99" fill="none" stroke="#A8B6D8" stroke-width="1" stroke-dasharray="4 3"></circle>
+        <line x1="330" y1="190" x2="330" y2="100" stroke="#C9D6F5" stroke-width="6"></line>
+        <line x1="304" y1="233" x2="226" y2="280" stroke="#C9D6F5" stroke-width="6"></line>
+        <line x1="356" y1="203" x2="434" y2="158" stroke="#C9D6F5" stroke-width="6"></line>
+        <circle cx="330" cy="218" r="15" fill="#FFFFFF" stroke="#A8B6D8" stroke-width="1"></circle>
+        <text x="330" y="194" text-anchor="middle" font-size="13" font-weight="600" fill="#3C455C">轴心区</text>
+        <text x="330" y="245" text-anchor="middle" font-size="11.5" fill="#6B7488">0 g · 港口</text>
+        <line x1="312" y1="324" x2="312" y2="344" stroke="#D0453F" stroke-width="2" marker-end="url(#ar)"></line>
+        <line x1="432" y1="218" x2="458" y2="218" stroke="#D0453F" stroke-width="2" marker-end="url(#ar)"></line>
+        <line x1="228" y1="218" x2="202" y2="218" stroke="#D0453F" stroke-width="2" marker-end="url(#ar)"></line>
+        <line x1="316" y1="118" x2="316" y2="92" stroke="#D0453F" stroke-width="2" marker-end="url(#ar)"></line>
+        <circle cx="330" cy="323" r="5" fill="#FFFFFF" stroke="#111729" stroke-width="1.6"></circle>
+        <line x1="330" y1="328" x2="330" y2="343" stroke="#111729" stroke-width="3"></line>
+        <line x1="322" y1="345" x2="338" y2="345" stroke="#111729" stroke-width="3"></line>
+        <text x="62" y="308" font-size="11.5" fill="#3C455C">“上”朝向轴心</text>
+        <line x1="200" y1="305" x2="320" y2="321" stroke="#A8B6D8" stroke-width="1" stroke-dasharray="3 3"></line>
+        <path d="M436 114 A148 148 0 0 1 465 156" fill="none" stroke="#6B7488" stroke-width="1.4" marker-end="url(#ar)"></path>
+        <text x="472" y="152" font-size="11.5" fill="#3C455C">ω 旋转</text>
+        <line x1="330" y1="218" x2="422" y2="310" stroke="#A8B6D8" stroke-width="1" stroke-dasharray="4 3"></line>
+        <line x1="415" y1="317" x2="429" y2="303" stroke="#A8B6D8" stroke-width="1"></line>
+        <text x="441" y="325" font-size="13" font-weight="600" fill="#16245A">R ≈ 180 m</text>
+        <text x="330" y="382" text-anchor="middle" font-size="12" fill="#3C455C">外壁 = 地板 · “下”沿半径向外</text>
+        <text x="330" y="404" text-anchor="middle" font-size="11.5" fill="#6B7488">脚朝外、头朝轴——环中感受到的“上下”与地球直觉正好相反</text>
+      </svg>
+      <figcaption><b>图 A</b>　重力（惯性离心力）沿半径指向外：脚踩外壁、头朝轴心。同一转速下半径越大 g 越大；头离轴更近，所以头部的 g 略小于脚部——R = 180 m 时 1.7 m 身高差仅差约 1.9%，R = 30 m 时超过 6%，人会明显不适。</figcaption>
+    </figure>
+  </section>
+
+  <section class="card">
+    <h2>分级重力：让每个功能待在它该在的半径上</h2>
+    <p class="sub">旋转体里，半径就是资源——轴心 0 g，外圈 0.8 g，中间连续过渡</p>
+    <figure class="fig-scroll">
+      <svg viewBox="0 0 680 330" width="100%" role="img" aria-label="分级重力布局：轴心港口、中间农业、外圈居住">
+        <defs>
+          <marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </marker>
+        </defs>
+        <circle cx="330" cy="160" r="132" fill="#2F5BEA"></circle>
+        <circle cx="330" cy="160" r="118" fill="#F4F7FF"></circle>
+        <circle cx="330" cy="160" r="92" fill="#E9F7F0"></circle>
+        <circle cx="330" cy="160" r="58" fill="#EFF2F8"></circle>
+        <circle cx="330" cy="160" r="118" fill="none" stroke="#C9D6F5" stroke-width="1"></circle>
+        <circle cx="330" cy="160" r="92" fill="none" stroke="#C6E8D8" stroke-width="1"></circle>
+        <circle cx="330" cy="160" r="58" fill="none" stroke="#A8B6D8" stroke-width="1" stroke-dasharray="4 3"></circle>
+        <line x1="330" y1="160" x2="414" y2="76" stroke="#C9D6F5" stroke-width="4"></line>
+        <line x1="330" y1="160" x2="266" y2="224" stroke="#C9D6F5" stroke-width="4"></line>
+        <circle cx="330" cy="160" r="12" fill="#FFFFFF" stroke="#A8B6D8" stroke-width="1"></circle>
+        <text x="330" y="128" text-anchor="middle" font-size="13" font-weight="600" fill="#3C455C">轴心区</text>
+        <text x="330" y="145" text-anchor="middle" font-size="11.5" fill="#6B7488">0 g · 港口</text>
+        <text x="330" y="190" text-anchor="middle" font-size="11.5" fill="#6B7488">大质量货物转运</text>
+        <text x="330" y="230" text-anchor="middle" font-size="13" font-weight="600" fill="#1E7C5A">农业</text>
+        <text x="330" y="246" text-anchor="middle" font-size="11.5" fill="#1E7C5A">≈ 0.3 g</text>
+        <text x="330" y="50" text-anchor="middle" font-size="13" font-weight="600" fill="#16245A">居住</text>
+        <text x="330" y="66" text-anchor="middle" font-size="11.5" fill="#2F5BEA">0.8 g</text>
+        <line x1="330" y1="160" x2="242" y2="72" stroke="#A8B6D8" stroke-width="1" stroke-dasharray="4 3" marker-start="url(#ar2)" marker-end="url(#ar2)"></line>
+        <text x="42" y="62" font-size="12" font-weight="600" fill="#3C455C">半径 = 资源</text>
+        <text x="42" y="80" font-size="11.5" fill="#6B7488">g 由轴心向外连续升高</text>
+        <text x="42" y="97" font-size="11.5" fill="#6B7488">（0 → 0.8 g）</text>
+        <path d="M428 62 A140 140 0 0 1 456 104" fill="none" stroke="#6B7488" stroke-width="1.4" marker-end="url(#ar2)"></path>
+        <text x="462" y="100" font-size="11.5" fill="#3C455C">ω 旋转</text>
+        <text x="330" y="316" text-anchor="middle" font-size="11.5" fill="#6B7488">原理示意——具体半径由你们的 0.8 g 要求反算，不能照抄</text>
+      </svg>
+      <figcaption><b>图 B</b>　轴心放港口：飞船无需在旋转中对接口、大质量货物可漂浮转运、避免在旋转界面上开大开口；农业放中间层：许多作物在 0.3 g 左右可正常生长，且靠近生保与废物处理，缩短物质流路径。</figcaption>
+    </figure>
+  </section>
+
+  <section class="card">
+    <h2>评审会怎么看这一章</h2>
+    <p class="sub">从 RFP 评审准则与历年评审表里提炼的三条</p>
+    <div class="eval">
+      <div><b>① 标方向</b>图纸上必须标出“重力方向”，且与轴心、外壁的关系画对。</div>
+      <div><b>② 给数字</b>给半径 R + 转速 n + 计算过程；“采用 0.8 g”不是设计成果。</div>
+      <div><b>③ 能自洽</b>半径要能解释为什么不是 150 m、也不是 500 m，并与面积表、结构方案、成本表对上。</div>
+    </div>
+    <ul class="clean">
+      <li><b>停转之后谁先失效？</b>全城瞬间失重：水不往下流、灰尘不落、火焰成球形——生保与消防要有“失重模式”预案。</li>
+      <li><b>旋转与静止怎么接？</b>电、水、气、数据、人员都要穿过“转与不转”的界面，接口越少越好，这也是港口放轴心的原因。</li>
+      <li><b>本项目的深度界线：</b>轴承选型、动平衡、消旋机构不是考点；写多了反而挤掉真正得分的内容。</li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>GFSSM AI Coach · 模块 03 GRAVITY · 图 3-2 交互增强版</span>
+    <a href="../index.html#/gravity">返回学习页 →</a>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var G = 9.80665;
+  var OMEGA2 = Math.pow(2 * Math.PI * 2 / 60, 2);
+  var X0 = 90, X1 = 828, Y0 = 40, Y1 = 368;
+  var R_AXIS_MIN = 40, R_AXIS_MAX = 520, N_MIN = 1.0, N_MAX = 3.2;
+  var state = { aG: 0.8, R: 179 };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var xOf = function(R){ return X0 + (R - R_AXIS_MIN) / (R_AXIS_MAX - R_AXIS_MIN) * (X1 - X0); };
+  var yOf = function(n){ return Y1 - (n - N_MIN) / (N_MAX - N_MIN) * (Y1 - Y0); };
+  var nOf = function(R, aG){ return 9.5493 * Math.sqrt(aG * G / R); };
+  var rMinOf = function(aG){ return aG * G / OMEGA2; };
+
+  function drawStatic(){
+    var grid = '', ticks = '';
+    [1.5, 2.0, 2.5, 3.0].forEach(function(n){
+      var y = yOf(n).toFixed(1);
+      grid += '<line x1="90" y1="' + y + '" x2="828" y2="' + y + '" stroke="#EFF2F8" stroke-width="1"></line>';
+    });
+    ticks += '<line x1="90" y1="219" x2="90" y2="219" stroke="none"></line>';
+    [100, 150, 200, 250, 300, 350, 400, 450, 500].forEach(function(R){
+      var x = xOf(R).toFixed(1);
+      grid += '<line x1="' + x + '" y1="40" x2="' + x + '" y2="368" stroke="#F4F6FB" stroke-width="1"></line>';
+      ticks += '<text x="' + x + '" y="386" text-anchor="middle" font-size="11" fill="#6B7488">' + R + '</text>';
+    });
+    [1.0, 1.5, 2.0, 2.5, 3.0].forEach(function(n){
+      ticks += '<text x="82" y="' + (yOf(n) + 4).toFixed(1) + '" text-anchor="end" font-size="11" fill="#6B7488">' + n.toFixed(1) + '</text>';
+    });
+    $('grid').innerHTML = grid;
+    $('ticks').innerHTML = ticks;
+  }
+
+  function render(){
+    var aG = state.aG, R = state.R;
+    var a = aG * G;
+    var n = nOf(R, aG);
+    var rMin = rMinOf(aG);
+
+    $('formula').textContent = 'a = ' + aG.toFixed(2) + ' g = ' + a.toFixed(2) + ' m/s²　·　n = 9.549 × √(a / R) ≈ ' + (26.738 * Math.sqrt(aG / 0.8)).toFixed(2) + ' / √R(m)　·　2 rpm 下 R_min = ' + Math.round(rMin) + ' m';
+
+    var d = '';
+    for (var r = R_AXIS_MIN; r <= R_AXIS_MAX; r += 2){
+      var nn = nOf(r, aG);
+      d += (d ? ' L' : 'M') + xOf(r).toFixed(1) + ' ' + yOf(nn).toFixed(1);
+    }
+    $('curve').setAttribute('d', d);
+
+    var svg = '';
+    var pts = [100, 150, 200, 300, 400];
+    pts.forEach(function(r){
+      var v = nOf(r, aG);
+      if (v > N_MAX || v < N_MIN) return;
+      if (Math.abs(r - rMin) < 26) return;
+      var x = xOf(r), y = yOf(v);
+      var col = v > 2 ? '#D0453F' : '#1E9E6A';
+      svg += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="4.5" fill="#FFFFFF" stroke="' + col + '" stroke-width="1.8"></circle>';
+      svg += '<text x="' + x.toFixed(1) + '" y="' + (y - 11).toFixed(1) + '" text-anchor="middle" font-size="10.5" fill="' + col + '">' + r + ' m</text>';
+      svg += '<text x="' + x.toFixed(1) + '" y="' + (y + 18).toFixed(1) + '" text-anchor="middle" font-size="10.5" fill="' + col + '">' + v.toFixed(2) + '</text>';
+    });
+
+    var mx = xOf(rMin), my = yOf(2);
+    svg += '<circle cx="' + mx.toFixed(1) + '" cy="' + my.toFixed(1) + '" r="10" fill="none" stroke="#C78318" stroke-width="1.6"></circle>';
+    svg += '<text x="' + mx.toFixed(1) + '" y="' + (my - 16).toFixed(1) + '" text-anchor="middle" font-size="11" font-weight="600" fill="#C78318">R_min ' + Math.round(rMin) + ' m</text>';
+
+    var cx = xOf(R), cy = yOf(n);
+    svg += '<line x1="' + cx.toFixed(1) + '" y1="' + cy.toFixed(1) + '" x2="' + cx.toFixed(1) + '" y2="368" stroke="#A8B6D8" stroke-width="1" stroke-dasharray="4 3"></line>';
+    svg += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="7.5" fill="#FFFFFF" stroke="#2F5BEA" stroke-width="2.6"></circle>';
+
+    var label = '当前：R = ' + R + ' m → n = ' + n.toFixed(2) + ' rpm';
+    svg += '<text x="98" y="352" font-size="11.5" font-weight="600" fill="#16245A">' + label + '</text>';
+    $('dyn').innerHTML = svg;
+
+    var card = $('badgeCard'), badge = $('badge'), hint = $('hint');
+    card.className = 'metric';
+    badge.className = 'v';
+    if (n > 2.02){
+      card.classList.add('bad'); badge.classList.add('bad'); badge.textContent = '超出上限';
+      hint.innerHTML = '<b>超 2 rpm 舒适上限。</b>多数人会出现头晕、转头时恶心、物体“拐弯下落”；这个半径在本年的 0.80 g 要求下不可取。';
+    } else if (n > 1.96){
+      card.classList.add('warn'); badge.classList.add('warn'); badge.textContent = '临界';
+      hint.innerHTML = '<b>正卡在 2 rpm 临界点上。</b>这就是 0.80 g 下允许的最小半径（约 ' + Math.round(rMin) + ' m）——结构最省，但舒适度没有余量，方案里要说明为什么敢取这个值。';
+    } else {
+      card.classList.add('ok'); badge.classList.add('ok'); badge.textContent = '舒适区';
+      hint.innerHTML = '<b>在舒适区内。</b>代价转移到另一侧：环体周长、壳体面积、屏蔽质量按 R 增长，结构质量与造价上升。半径越大越舒服，但不是越大越好。';
+    }
+
+    $('valR').textContent = R;
+    $('valN').textContent = n.toFixed(2);
+    $('valMin').textContent = Math.round(rMin);
+  }
+
+  document.querySelectorAll('.seg button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.seg button').forEach(function(b){ b.classList.remove('on'); });
+      btn.classList.add('on');
+      state.aG = parseFloat(btn.dataset.a);
+      var rMin = rMinOf(state.aG);
+      state.R = Math.round(Math.min(500, Math.max(60, rMin * 1.0)));
+      $('rRange').value = state.R;
+      render();
+    });
+  });
+
+  $('rRange').addEventListener('input', function(e){
+    state.R = parseInt(e.target.value, 10);
+    render();
+  });
+
+  drawStatic();
+  render();
+})();
+</script>
+</body>
+</html>

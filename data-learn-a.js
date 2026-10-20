@@ -335,7 +335,7 @@ R：居住地板到旋转轴的距离（m）
       </ul>
       <p>这就是一个典型的 <b>trade-off</b>：RFP 只给"0.8 g"，没给半径和转速，是因为它想看你<b>怎么权衡并论证</b>。写方案时至少要做一张两方案对比表（半径/转速/结构质量/舒适度/成本）。</p>
       <div class="pele-fig" data-diagram="gravity-rpm"></div>
-      <p class="pele-cap">图 3-2　0.8 g 时的半径—转速设计空间：R 从 120 m 到 260 m，转速从 2.44 降到 1.66 rpm；水平线是 2 rpm 舒适上限。</p>
+      <p class="pele-cap">图 3-2　0.8 g 时的半径—转速设计空间：R 从 120 m 到 260 m，转速从 2.44 降到 1.66 rpm；水平线是 2 rpm 舒适上限。<a href="./figures/gravity-design-space.html" target="_blank" rel="noopener">交互版：拖动半径看转速变化</a></p>
       <div class="callout c-eval"><span class="ct">评审视角</span>
       评委看三件事：① 图纸上有没有标<b>重力方向</b>；② 有没有给<b>半径 + 转速 + 计算过程</b>；③ 这个半径和你们的建筑面积、结构方案、成本表是否<b>自洽</b>。只写"我们采用 0.8 g"而不给数字，等于没做。</div>
     ` },
