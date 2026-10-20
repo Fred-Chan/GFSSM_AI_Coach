@@ -263,6 +263,9 @@ R：居住地板到旋转轴的距离（m）
       <b>2 rpm 是舒适上限</b>（经验值，超过后多数人会出现头晕、转头时恶心、物体"拐弯下落"）。由此推出：<b>要 {{gTarget}} g，半径至少约 180 m 量级</b>（见上表最后一行，随目标重力变化）。反过来，<b>半径一定，转速就被公式算死了</b>——这就是为什么"我想转快点让重力大一点"在工程上不成立：转速一高，人先受不了。</div>
       <div class="callout c-warn"><span class="ct">换星球时这个表怎么变</span>
       公式不变，只有 <b>a</b> 跟着目标重力变。若某年 RFP 要求 0.4 g（火星本地重力水平），最小半径会降到约 {{gTarget}} g 版本的 40%——结构代价相差一个量级。<b>所以"要求几 g"是一个工程决策，不是抄来的常数。</b></div>
+      <p class="small" style="margin:18px 0 0"><b>动手调一下</b>　下面的图用的就是同一个 a = ω²R：拖动半径看转速怎么变，或切到 0.40 g 看整条曲线怎么挪。</p>
+      <div class="anatomy-slot" data-figure="gravity-design-space"></div>
+      <p class="anatomy-cap">交互版：半径 R 与转速 n 是绑死的——R 越小，n 越高（n ∝ 1/√R）；金色圈标的是 2 rpm 下所需的最小半径。<a href="./figures/gravity-design-space.html" target="_blank" rel="noopener">单独打开</a></p>
     ` },
     { h: '3.3 方向：脚朝外，头朝轴', html: `
       <p>人站在旋转环里，跟着环一起转，必须有向心加速度指向轴心；环的地板给人的支持力提供这个加速度，人感受到的是<b>惯性离心力</b>，方向<b>沿半径向外</b>。所以：</p>
@@ -335,7 +338,7 @@ R：居住地板到旋转轴的距离（m）
       </ul>
       <p>这就是一个典型的 <b>trade-off</b>：RFP 只给"0.8 g"，没给半径和转速，是因为它想看你<b>怎么权衡并论证</b>。写方案时至少要做一张两方案对比表（半径/转速/结构质量/舒适度/成本）。</p>
       <div class="pele-fig" data-diagram="gravity-rpm"></div>
-      <p class="pele-cap">图 3-2　0.8 g 时的半径—转速设计空间：R 从 120 m 到 260 m，转速从 2.44 降到 1.66 rpm；水平线是 2 rpm 舒适上限。<a href="./figures/gravity-design-space.html" target="_blank" rel="noopener">交互版：拖动半径看转速变化</a></p>
+      <p class="pele-cap">图 3-2　0.8 g 时的半径—转速设计空间：R 从 120 m 到 260 m，转速从 2.44 降到 1.66 rpm；水平线是 2 rpm 舒适上限。</p>
       <div class="callout c-eval"><span class="ct">评审视角</span>
       评委看三件事：① 图纸上有没有标<b>重力方向</b>；② 有没有给<b>半径 + 转速 + 计算过程</b>；③ 这个半径和你们的建筑面积、结构方案、成本表是否<b>自洽</b>。只写"我们采用 0.8 g"而不给数字，等于没做。</div>
     ` },
