@@ -275,57 +275,45 @@ R：居住地板到旋转轴的距离（m）
         <li>扔出去的物体会"拐弯"（科里奥利），倒水会偏向一侧；转身时血液被扰动 → 这是低转速要求的来源。</li>
       </ul>
       <figure>
-        <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="旋转环人工重力方向示意图">
+                        <svg viewBox="0 0 680 424" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="旋转环剖面：重力沿半径向外，轴心为 0 g，脚朝外、头朝轴">
           <defs>
-            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <marker id="gv1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0,0 L10,5 L0,10 z" fill="#2F5BEA"></path>
             </marker>
-            <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M0,0 L10,5 L0,10 z" fill="#C78318"></path>
-            </marker>
-            <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <marker id="gv1b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
               <path d="M0,0 L10,5 L0,10 z" fill="#0E9F9F"></path>
             </marker>
           </defs>
-
-          <line x1="340" y1="18" x2="340" y2="168" stroke="#C9D1E4" stroke-width="1.2" stroke-dasharray="5 5"></line>
-          <text x="348" y="32" font-size="11" fill="#6B7488">自转轴（0 g）</text>
-
-          <path d="M340 40 A130 130 0 1 1 339.9 40 Z M340 78 A92 92 0 1 0 340.1 78 Z"
-                fill="#E7EDFD" fill-rule="evenodd" stroke="#AFC2EF" stroke-width="1.2"></path>
-
-          <circle cx="340" cy="170" r="46" fill="#FFF" stroke="#C9D1E4"></circle>
-          <text x="340" y="165" font-size="11.5" fill="#111729" text-anchor="middle" font-weight="600">对接港</text>
-          <text x="340" y="180" font-size="10.5" fill="#6B7488" text-anchor="middle">0 g / 微重力</text>
-
-          <line x1="340" y1="170" x2="470" y2="170" stroke="#C78318" stroke-width="1.4" marker-end="url(#ar2)"></line>
-          <text x="418" y="161" font-size="11.5" fill="#C78318" text-anchor="middle" font-weight="600">R = 250 m</text>
-          <text x="418" y="189" font-size="10.5" fill="#8A6A2A" text-anchor="middle">地板半径</text>
-          <text x="482" y="167" font-size="10.5" fill="#8A6A2A">地板处 0.8 g</text>
-
-          <line x1="248" y1="78" x2="212" y2="42" stroke="#2F5BEA" stroke-width="2" marker-end="url(#ar)"></line>
-          <line x1="432" y1="78" x2="468" y2="42" stroke="#2F5BEA" stroke-width="2" marker-end="url(#ar)"></line>
-
-          <path d="M229 170 A111 111 0 0 1 340 59" fill="none" stroke="#0E9F9F" stroke-width="1.4" marker-end="url(#ar3)"></path>
-          <text x="176" y="112" font-size="10.5" fill="#0E9F9F" text-anchor="middle">旋转方向</text>
-
-          <!-- 人：脚踩外壁（下），头朝圆心（上） -->
-          <g transform="translate(340,291)">
-            <ellipse cx="0" cy="9" rx="9" ry="2.6" fill="#2F5BEA" opacity=".22"></ellipse>
-            <circle cx="0" cy="-25" r="5.4" fill="#111729"></circle>
-            <line x1="0" y1="-20" x2="0" y2="-3" stroke="#111729" stroke-width="2.4"></line>
-            <line x1="0" y1="-3" x2="-5" y2="8" stroke="#111729" stroke-width="2.2"></line>
-            <line x1="0" y1="-3" x2="5" y2="8" stroke="#111729" stroke-width="2.2"></line>
-            <line x1="0" y1="-15" x2="-7" y2="-7" stroke="#111729" stroke-width="2"></line>
-            <line x1="0" y1="-15" x2="7" y2="-7" stroke="#111729" stroke-width="2"></line>
-          </g>
-
-          <line x1="340" y1="302" x2="340" y2="342" stroke="#2F5BEA" stroke-width="2" marker-end="url(#ar)"></line>
-          <text x="340" y="362" font-size="11.5" fill="#2F5BEA" text-anchor="middle" font-weight="600">离心力指向外 → 脚踩外壁（"下"= 外壁）</text>
-          <text x="304" y="272" font-size="10.5" fill="#6B7488" text-anchor="end">头朝轴心</text>
-
-          <text x="40" y="252" font-size="11" fill="#6B7488">内圈半径小</text>
-          <text x="40" y="268" font-size="11" fill="#6B7488">→ g 更小</text>
+          <circle cx="330" cy="210" r="148" fill="#2F5BEA"></circle>
+          <circle cx="330" cy="210" r="136" fill="#F4F7FF"></circle>
+          <circle cx="330" cy="210" r="100" fill="#EFF2F8"></circle>
+          <circle cx="330" cy="210" r="136" fill="none" stroke="#C9D6F5" stroke-width="1"></circle>
+          <circle cx="330" cy="210" r="100" fill="none" stroke="#A8B6D8" stroke-width="1" stroke-dasharray="4 3"></circle>
+          <line x1="330" y1="184" x2="330" y2="94" stroke="#C9D6F5" stroke-width="6"></line>
+          <line x1="304" y1="225" x2="226" y2="272" stroke="#C9D6F5" stroke-width="6"></line>
+          <line x1="356" y1="195" x2="434" y2="150" stroke="#C9D6F5" stroke-width="6"></line>
+          <circle cx="330" cy="210" r="15" fill="#FFFFFF" stroke="#A8B6D8" stroke-width="1"></circle>
+          <text x="330" y="186" text-anchor="middle" font-size="13" font-weight="600" fill="#3C455C">轴心区</text>
+          <text x="330" y="238" text-anchor="middle" font-size="11.5" fill="#6B7488">0 g · 港口</text>
+          <line x1="300" y1="320" x2="300" y2="340" stroke="#2F5BEA" stroke-width="2" marker-end="url(#gv1a)"></line>
+          <line x1="436" y1="210" x2="462" y2="210" stroke="#2F5BEA" stroke-width="2" marker-end="url(#gv1a)"></line>
+          <line x1="224" y1="210" x2="198" y2="210" stroke="#2F5BEA" stroke-width="2" marker-end="url(#gv1a)"></line>
+          <line x1="316" y1="110" x2="316" y2="86" stroke="#2F5BEA" stroke-width="2" marker-end="url(#gv1a)"></line>
+          <circle cx="330" cy="316" r="5" fill="#FFFFFF" stroke="#111729" stroke-width="1.6"></circle>
+          <line x1="330" y1="321" x2="330" y2="336" stroke="#111729" stroke-width="2.6"></line>
+          <line x1="330" y1="336" x2="324" y2="346" stroke="#111729" stroke-width="2.4"></line>
+          <line x1="330" y1="336" x2="336" y2="346" stroke="#111729" stroke-width="2.4"></line>
+          <line x1="330" y1="325" x2="321" y2="330" stroke="#111729" stroke-width="2"></line>
+          <line x1="330" y1="325" x2="339" y2="330" stroke="#111729" stroke-width="2"></line>
+          <text x="60" y="300" font-size="11.5" fill="#3C455C">“上”朝向轴心</text>
+          <line x1="198" y1="297" x2="318" y2="320" stroke="#A8B6D8" stroke-width="1" stroke-dasharray="3 3"></line>
+          <path d="M437 91 A160 160 0 0 1 480 155" fill="none" stroke="#0E9F9F" stroke-width="1.4" marker-end="url(#gv1b)"></path>
+          <text x="488" y="150" font-size="11.5" fill="#0E9F9F">ω 旋转</text>
+          <line x1="330" y1="210" x2="424" y2="304" stroke="#C78318" stroke-width="1" stroke-dasharray="4 3"></line>
+          <line x1="417" y1="311" x2="431" y2="297" stroke="#C78318" stroke-width="1"></line>
+          <text x="443" y="330" font-size="13" font-weight="600" fill="#C78318">R ≈ 180 m</text>
+          <text x="330" y="376" text-anchor="middle" font-size="12" fill="#3C455C">外壁 = 地板 · “下”沿半径向外</text>
+          <text x="330" y="398" text-anchor="middle" font-size="11.5" fill="#6B7488">脚朝外、头朝轴——环中感受到的“上下”与地球直觉正好相反</text>
         </svg>
         <figcaption>图 3-1　旋转环剖面：重力沿半径向外，轴心为 0 g；同一转速下半径越大 g 越大。</figcaption>
       </figure>
@@ -345,24 +333,38 @@ R：居住地板到旋转轴的距离（m）
     { h: '3.5 分级重力：让每个功能待在它该在的半径上', html: `
       <p>旋转体里<b>半径就是资源</b>：轴心 0 g、外圈高 g，中间连续过渡。合理的城市会把不同功能放到不同半径层：</p>
       <figure>
-        <svg viewBox="0 0 680 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="分级重力功能分区示意图">
-          <circle cx="330" cy="165" r="140" fill="#F4F7FF" stroke="#C9D6F5"></circle>
-          <circle cx="330" cy="165" r="108" fill="#EAF3F3" stroke="#BEE3E3"></circle>
-          <circle cx="330" cy="165" r="76" fill="#E9F7F0" stroke="#C6E8D8"></circle>
-          <circle cx="330" cy="165" r="40" fill="#FFF7E8" stroke="#EBD7B0"></circle>
-          <text x="330" y="160" font-size="11.5" fill="#8A6A2A" text-anchor="middle" font-weight="700">0 g</text>
-          <text x="330" y="176" font-size="10.5" fill="#8A6A2A" text-anchor="middle">对接港 / 微重力工业</text>
-          <text x="330" y="115" font-size="11.5" fill="#1E7C5A" text-anchor="middle" font-weight="700">0.3–0.4 g</text>
-          <text x="330" y="131" font-size="10.5" fill="#1E7C5A" text-anchor="middle">农业 / 仓储</text>
-          <text x="330" y="72" font-size="11.5" fill="#0E7C7C" text-anchor="middle" font-weight="700">0.5–0.6 g</text>
-          <text x="330" y="88" font-size="10.5" fill="#0E7C7C" text-anchor="middle">工作 / 科研</text>
-          <text x="330" y="36" font-size="11.5" fill="#2F5BEA" text-anchor="middle" font-weight="700">0.8 g（外圈居住）</text>
-          <line x1="470" y1="165" x2="470" y2="60" stroke="#A8B6D8" stroke-width="1" stroke-dasharray="3 3"></line>
-          <text x="478" y="70" font-size="10.5" fill="#6B7488">半径增大 →</text>
-          <text x="478" y="86" font-size="10.5" fill="#6B7488">g 增大</text>
-          <line x1="330" y1="165" x2="438" y2="165" stroke="#C78318" stroke-width="1.2"></line>
-          <text x="384" y="158" font-size="10.5" fill="#C78318" text-anchor="middle">R</text>
-          <text x="40" y="300" font-size="11" fill="#6B7488">图：以转轴为圆心，按重力需求分层布置功能区；外圈居住，轴心港口。</text>
+                        <svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="分级重力布局：轴心港口 0 g、中间农业与工作层、外圈居住 0.8 g">
+          <defs>
+            <marker id="gv2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#0E9F9F"></path>
+            </marker>
+          </defs>
+          <circle cx="235" cy="205" r="170" fill="#2F5BEA"></circle>
+          <circle cx="235" cy="205" r="158" fill="#F4F7FF"></circle>
+          <circle cx="235" cy="205" r="122" fill="#E8F7F7"></circle>
+          <circle cx="235" cy="205" r="86" fill="#E9F7F0"></circle>
+          <circle cx="235" cy="205" r="50" fill="#EFF2F8"></circle>
+          <circle cx="235" cy="205" r="158" fill="none" stroke="#C9D6F5" stroke-width="1"></circle>
+          <circle cx="235" cy="205" r="122" fill="none" stroke="#BEE3E3" stroke-width="1"></circle>
+          <circle cx="235" cy="205" r="86" fill="none" stroke="#C6E8D8" stroke-width="1"></circle>
+          <circle cx="235" cy="205" r="50" fill="none" stroke="#A8B6D8" stroke-width="1" stroke-dasharray="4 3"></circle>
+          <line x1="235" y1="205" x2="332" y2="108" stroke="#C9D6F5" stroke-width="3"></line>
+          <line x1="235" y1="205" x2="165" y2="275" stroke="#C9D6F5" stroke-width="3"></line>
+          <circle cx="235" cy="205" r="10" fill="#FFFFFF" stroke="#A8B6D8" stroke-width="1"></circle>
+          <text x="235" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#3C455C">0 g</text>
+          <text x="235" y="216" text-anchor="middle" font-size="10" fill="#6B7488">港口</text>
+          <path d="M357 60 A190 190 0 0 1 399 110" fill="none" stroke="#0E9F9F" stroke-width="1.4" marker-end="url(#gv2a)"></path>
+          <text x="408" y="110" font-size="10.5" fill="#0E9F9F">ω 旋转</text>
+          <rect x="445" y="132" width="12" height="12" rx="2" fill="#EFF2F8" stroke="#A8B6D8" stroke-width="1"></rect>
+          <text x="465" y="142" font-size="11.5" fill="#3C455C">0 g　对接港 · 微重力工业</text>
+          <rect x="445" y="167" width="12" height="12" rx="2" fill="#E9F7F0" stroke="#C6E8D8" stroke-width="1"></rect>
+          <text x="465" y="177" font-size="11.5" fill="#3C455C">0.3–0.4 g　农业 · 仓储</text>
+          <rect x="445" y="202" width="12" height="12" rx="2" fill="#E8F7F7" stroke="#BEE3E3" stroke-width="1"></rect>
+          <text x="465" y="212" font-size="11.5" fill="#3C455C">0.5–0.6 g　工作 · 科研</text>
+          <rect x="445" y="237" width="12" height="12" rx="2" fill="#F4F7FF" stroke="#C9D6F5" stroke-width="1"></rect>
+          <text x="465" y="247" font-size="11.5" fill="#3C455C">0.8 g　外圈居住（地板）</text>
+          <text x="445" y="292" font-size="10.5" fill="#6B7488">越靠外：半径越大，g 越大</text>
+          <text x="340" y="400" text-anchor="middle" font-size="11" fill="#6B7488">以转轴为圆心，按重力需求分层布置功能区；具体半径须按你们的 0.8 g 要求反算</text>
         </svg>
         <figcaption>图 3-3　分级重力布局。注意：这只是原理示意，具体半径由你们的 0.8 g 要求反算，不能照抄。</figcaption>
       </figure>
